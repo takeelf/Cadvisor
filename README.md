@@ -51,3 +51,27 @@ docker run \
   --name grafana \
   grafana/grafana
 ```
+
+
+```
+docker run \
+  --volume=/:/rootfs:ro \
+  --volume=/var/run:/var/run:rw \
+  --volume=/sys:/sys:ro \
+  --volume=/var/lib/docker/:/var/lib/docker:ro \
+  --publish=8999:8080 \
+  --detach=true \
+  --name=cadvisor \
+  --link atsd:atsd \
+  axibase/cadvisor:latest \
+  --storage_driver=atsd \
+  --storage_driver_atsd_protocol=http \
+  --storage_driver_host=52.79.151.187:8088 \
+  --storage_driver_user=admin \
+  --storage_driver_password=admin \
+  --storage_driver_buffer_duration=15s \
+  --housekeeping_interval=15s 
+  ```
+
+
+
