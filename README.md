@@ -53,6 +53,29 @@ docker run \
 ```
 
 
+
+
+
+```
+docker run \
+  --volume=/:/rootfs:ro \
+  --volume=/var/run:/var/run:rw \
+  --volume=/sys:/sys:ro \
+  --volume=/var/lib/docker/:/var/lib/docker:ro \
+  --publish=8999:8080 \
+  --detach=true \
+  --name=cadvisor \
+  --link atsd:atsd \
+  axibase/cadvisor:latest \
+  --storage_driver=atsd \
+  --storage_driver_atsd_protocol=tcp \
+  --storage_driver_host=atsd \
+  --storage_driver_buffer_duration=15s \
+  --housekeeping_interval=15s 
+```
+
+
+
 ```
 docker run \
   --volume=/:/rootfs:ro \
