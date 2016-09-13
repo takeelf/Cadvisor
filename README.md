@@ -30,11 +30,11 @@ docker run \
 --publish=8081:8080 \
 --detach=true \
 --link influxdb:influxdb \
---name=cadvisor \ 
+--name=cadvisor \
 google/cadvisor:latest \
- -storage_driver=influxdb \
- -storage_driver_db=cadvisor \
- -storage_driver_host=influxdb:8086
+-storage_driver=influxdb \
+-storage_driver_db=cadvisor \
+-storage_driver_host=influxdb:8086
 ```
 
 ---
